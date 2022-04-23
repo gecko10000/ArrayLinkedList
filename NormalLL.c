@@ -207,7 +207,7 @@ ListObj normalLLDeleteBack(NormalLL *l) {
     }
     Node *last = l->last;
     l->last = last->prev;
-    l->last->prev = NULL;
+    l->last->next = NULL;
     freeNode(&last);
     if (l->index == l->length - 1) {
         l->index = -1;
