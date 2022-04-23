@@ -8,19 +8,18 @@ struct Node {
     ListObj value;
     Node *prev;
     Node *next;
-}
+};
 
 struct NormalLL {
-    int size;
+    int length;
     int index;
     Node *first;
     Node *last;
     Node *current;
-}
+};
 
-NormalLL *
-    normalLLCreate() {
-    NormalLL *l = calloc(sizeof(*l));
+NormalLL *normalLLCreate() {
+    NormalLL *l = calloc(1, sizeof(*l));
     l->index = -1;
     return l;
 }
@@ -31,7 +30,7 @@ void freeNormalLL(NormalLL **l) {
 }
 
 int normalLLLength(NormalLL *l) {
-    return l->size;
+    return l->length;
 }
 
 int normalLLIndex(NormalLL *l) {
@@ -47,11 +46,11 @@ ListObj normalLLBack(NormalLL *l) {
 }
 
 ListObj normalLLGet(NormalLL *l) {
-    return current == NULL ? NULL : current->value;
+    return l->current == NULL ? NULL : l->current->value;
 }
 
 Node *createNode(ListObj val) {
-    Node *n = calloc(sizeof(*n));
+    Node *n = calloc(1, sizeof(*n));
     n->value = val;
     return n;
 }
@@ -70,7 +69,7 @@ void normalLLClear(NormalLL *l, bool freeValues) {
         }
         prev = n;
         n = n->next;
-        freeNode(prev);
+        freeNode(&prev);
     }
     memset(l, 0, sizeof(*l));
     l->index = -1;
@@ -90,7 +89,7 @@ void normalLLMoveFront(NormalLL *l) {
 
 void normalLLMoveBack(NormalLL *l) {
     l->current = l->last;
-    l->index = l->size - 1;
+    l->index = l->length - 1;
 }
 
 void normalLLMovePrev(NormalLL *l) {
@@ -106,7 +105,7 @@ void normalLLMovePrev(NormalLL *l) {
 void normalLLMoveNext(NormalLL *l) {
     if (l->index == -1)
         return;
-    if (l->index == l->size - 1) {
+    if (l->index == l->length - 1) {
         l->index = -1;
         l->current = NULL;
         return;
@@ -133,7 +132,7 @@ void normalLLAppend(NormalLL *l, ListObj value) {
     Node *last = l->last;
     l->last = n;
     if (l->length++ == 0) {
-        l->first = new;
+        l->first = n;
         return;
     }
     last->next = n;
@@ -147,7 +146,7 @@ void normalLLInsertBefore(NormalLL *l, ListObj value) {
     Node *cur = l->current;
     Node *prev = cur->prev;
     cur->prev = n;
-    new->next = cur;
+    n->next = cur;
     if (prev != NULL) {
         prev->next = n;
         n->prev = prev;
@@ -190,7 +189,7 @@ ListObj normalLLDeleteFront(NormalLL *l) {
     freeNode(&first);
     l->length--;
     if (l->index == -1)
-        return;
+        return o;
     if (l->index-- == 0) {
         l->current = NULL;
     }
@@ -203,7 +202,7 @@ ListObj normalLLDeleteBack(NormalLL *l) {
     }
     ListObj o = l->last->value;
     if (l->length == 1) {
-        clear(l, false);
+        normalLLClear(l, false);
         return o;
     }
     Node *last = l->last;
