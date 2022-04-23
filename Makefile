@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -std=c17 -Wall -Wextra -Wpedantic
 
-TARGET = ll_tests
-MODULES = normal_ll array_ll
+TARGET = LLTests
+MODULES = NormalLL ArrayLL
 OBJECTS = $(patsubst %,%.o,${MODULES})
 
 .PHONY: all clean
