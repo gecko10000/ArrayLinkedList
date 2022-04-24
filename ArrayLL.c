@@ -3,9 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX(a, b) ((a) < (b) ? (b) : (a))
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-
 typedef struct Node Node;
 struct Node {
     ArrListObj value;
@@ -262,17 +259,44 @@ ArrListObj arrayLLDeleteFront(ArrayLL *l) {
         int next = n->next;
         l->first += next;
         l->arr[front + next]->prev = 0;
-        freeArrNode(&n);
         l->length--;
         l->index -= l->index == -1 ? 0 : 1;
+        freeArrNode(&n);
     }
     return value;
 }
 
 ArrListObj arrayLLDeleteBack(ArrayLL *l) {
-    return NULL;
+    int back = l->last;
+    Node *n = l->arr[back];
+    ArrListObj value = n->value;
+    if (l->length == 1) {
+        arrayLLClear(l, false);
+    } else {
+        l->arr[back] = NULL;
+        int prev = n->prev;
+        l->last += prev;
+        l->arr[back + prev]->next = 0;
+        l->length--;
+        if (l->index == l->length) {
+            l->index = -1;
+            l->current = -1;
+        }
+        freeArrNode(&n);
+    }
+    return value;
 }
 
 ArrListObj arrayLLDelete(ArrayLL *l) {
-    return NULL;
+    if (l->current == -1) return NULL;
+    if (l->index == 0) return arrayLLDeleteFront(l);
+    if (l->index == l->length - 1) return arrayLLDeleteBack(l);
+    Node *n = l->arr[l->current];
+    int prev = n->prev, next = n->next;
+    Node *prevNode = l->arr[prev], *nextNode = l->arr[next];
+    prevNode->next = next - prev;
+    nextNode->prev = prev - next;
+    ArrListObj value = n->value;
+    freeArrNode(&n);
+    return value;
 }
