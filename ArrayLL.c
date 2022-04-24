@@ -143,6 +143,7 @@ void arrayLLPrepend(NormalLL *l, ListObj value) {
     } else {
         // there is no first element
         i = 0;
+        l->last = 0;
     }
     // i is now the index to put the new node into
     l->arr[i] = n;
@@ -155,4 +156,27 @@ void arrayLLPrepend(NormalLL *l, ListObj value) {
     }
     l->first = i;
     l->index += l->index == -1 ? 0 : 1;
+}
+
+void arrayLLAppend(ArrayLL *l, ListObj value) {
+    Node *n = createNode(value);
+    int original = l->last, i = l->last;
+    if (original != -1) {
+        while (l->arr[i] != NULL) {
+            i = (i + 1) % l->length; // circ forwards
+            if (original == i) {
+                fprintf(stderr, "Array is full.");
+                exit(EXIT_FAILURE);
+            }
+        }
+    } else {
+        i = 0;
+        l->first = 0;
+    }
+    l->arr[i] = n;
+    if (original != -1) {
+        l->arr[original]->next = i - original;
+        n->prev = original - i;
+    }
+    l->last = i;
 }
