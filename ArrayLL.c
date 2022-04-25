@@ -288,9 +288,12 @@ ArrListObj arrayLLDeleteBack(ArrayLL *l) {
 }
 
 ArrListObj arrayLLDelete(ArrayLL *l) {
-    if (l->current == -1) return NULL;
-    if (l->index == 0) return arrayLLDeleteFront(l);
-    if (l->index == l->length - 1) return arrayLLDeleteBack(l);
+    if (l->current == -1)
+        return NULL;
+    if (l->index == 0)
+        return arrayLLDeleteFront(l);
+    if (l->index == l->length - 1)
+        return arrayLLDeleteBack(l);
     Node *n = l->arr[l->current];
     int prev = n->prev, next = n->next;
     Node *prevNode = l->arr[prev], *nextNode = l->arr[next];
