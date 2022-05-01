@@ -8,7 +8,7 @@ The array linked list is backed by a `Node[]`. Each Node has a value, and offset
 
 ## Speedup
 
-The speedup compared to a classic doubly linked list is by about 100%. Having run the test file with a few different sizes, the trend is apparent:
+The speedup compared to a classic doubly linked list is about 100%. Having run the test file with a few different sizes, the trend is apparent:
 ```
 $ ./LLTests 100000000
 ---Normal Linked List---
