@@ -16,7 +16,7 @@ ArrListObj arrayLLFront(ArrayLL *l);
 ArrListObj arrayLLBack(ArrayLL *l);
 ArrListObj arrayLLGet(ArrayLL *l);
 
-void arrayLLClear(ArrayLL *l, bool freeValues);
+void arrayLLClear(ArrayLL *l);
 void arrayLLSet(ArrayLL *l, ArrListObj value);
 void arrayLLMoveFront(ArrayLL *l);
 void arrayLLMoveBack(ArrayLL *l);
