@@ -19,11 +19,11 @@ void normalTest() {
     printf("Appended in %lu seconds.\n", time(NULL) - start);
     start = time(NULL);
     for (int i = 0; i < SIZE / 2; i++) {
-        if (*(int *)normalLLDeleteBack(l) != SIZE - i - 1) {
+        if (*(int *) normalLLDeleteBack(l) != SIZE - i - 1) {
             fprintf(stderr, "DeleteBack does not match.\n");
             exit(EXIT_FAILURE);
         }
-        if (*(int *)normalLLDeleteFront(l) != i) {
+        if (*(int *) normalLLDeleteFront(l) != i) {
             fprintf(stderr, "DeleteFront does not match.\n");
             exit(EXIT_FAILURE);
         }
@@ -48,11 +48,11 @@ void arrayTest() {
     printf("Appended in %lu seconds.\n", time(NULL) - start);
     start = time(NULL);
     for (int i = 0; i < SIZE / 2; i++) {
-        if (*(int *)arrayLLDeleteBack(l) != SIZE - i - 1) {
+        if (*(int *) arrayLLDeleteBack(l) != SIZE - i - 1) {
             fprintf(stderr, "DeleteBack does not match.\n");
             exit(EXIT_FAILURE);
         }
-        if (*(int *)arrayLLDeleteFront(l) != i) {
+        if (*(int *) arrayLLDeleteFront(l) != i) {
             fprintf(stderr, "DeleteFront does not match.\n");
             exit(EXIT_FAILURE);
         }
