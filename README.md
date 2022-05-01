@@ -5,3 +5,7 @@ This is an implementation of a linked list in which the elements are backed by a
 ## Node Objects in the Array LL
 
 The array linked list is backed by a `Node[]`. Each Node has a value, and offsets to the previous and next elements. There are also values for the first, last, and current Node's array indices, as well as the current index of the pointer.
+
+## Limitations
+
+The array LL currently has a fixed size in the constructor. It also cannot contain null pointers, as those are used to represent a non-existent Node. I am hoping to change that in the future.
