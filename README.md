@@ -8,31 +8,31 @@ The array linked list is backed by a `Node[]`. Each Node has a value, and offset
 
 ## Speedup
 
-The speedup compared to a classic doubly linked list is by about 30%. Having run the test file with a few different sizes, the trend is apparent:
+The speedup compared to a classic doubly linked list is by about 100%. Having run the test file with a few different sizes, the trend is apparent:
 ```
 $ ./LLTests 100000000
 ---Normal Linked List---
-Appended in 4 seconds.
+Appended in 3 seconds.
 Deleted in 2 seconds.
+---Array Linked List---
+Appended in 1 seconds.
+Deleted in 1 seconds.
+$ ./LLTests 250000000
+---Normal Linked List---
+Appended in 8 seconds.
+Deleted in 4 seconds.
 ---Array Linked List---
 Appended in 3 seconds.
 Deleted in 1 seconds.
-$ ./LLTests 200000000
----Normal Linked List---
-Appended in 7 seconds.
-Deleted in 4 seconds.
----Array Linked List---
-Appended in 5 seconds.
-Deleted in 4 seconds.
 $ ./LLTests 600000000
 ---Normal Linked List---
-Appended in 20 seconds.
-Deleted in 13 seconds.
+Appended in 18 seconds.
+Deleted in 9 seconds.
 ---Array Linked List---
-Appended in 15 seconds.
-Deleted in 11 seconds.
+Appended in 9 seconds.
+Deleted in 2 seconds.
 ```
-Deletion is a bit more similar because each value is being compared to ensure it is the correct one.
+The speedup is less pronounced without `-O3` in the compiler flags, but still present.
 
 ## Limitations
 
