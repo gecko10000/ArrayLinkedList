@@ -9,3 +9,7 @@ The array linked list is backed by a `Node[]`. Each Node has a value, and offset
 ## Limitations
 
 The array LL currently has a fixed size in the constructor. It also cannot contain null pointers, as those are used to represent a non-existent Node. I am hoping to change that in the future.
+
+## Usage
+
+To compile, run `$ make [all]`. Then, use `$ ./LLTests [size]` to run. The size will default to 100,000,000.

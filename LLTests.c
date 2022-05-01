@@ -5,9 +5,16 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SIZE 200000000
+int *vals;
+int SIZE = 100000000;
 
-int vals[SIZE];
+char *arg0;
+
+void errorExit(char *message) {
+    fprintf(stderr, "%s\n", message);
+    fprintf(stderr, "Usage: %s [size]\n", arg0);
+    exit(EXIT_FAILURE);
+}
 
 void normalTest() {
     printf("---Normal Linked List---\n");
@@ -67,7 +74,18 @@ void arrayTest() {
     freeArrayLL(&l);
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
+    arg0 = argv[0];
+    if (argc > 2) {
+        errorExit("Too many arguments.");
+    }
+    if (argc == 2) {
+        SIZE = atoi(argv[1]);
+        if (SIZE <= 0) {
+            errorExit("Please input a positive number.");
+        }
+    }
+    vals = malloc(SIZE * sizeof(*vals));
     for (int i = 0; i < SIZE; i++) {
         vals[i] = i;
     }
