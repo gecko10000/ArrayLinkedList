@@ -60,13 +60,9 @@ void freeNormalNode(Node **n) {
     *n = NULL;
 }
 
-void normalLLClear(NormalLL *l, bool freeValues) {
+void normalLLClear(NormalLL *l) {
     Node *n = l->first, *prev;
     while (n != NULL) {
-        ListObj o = n->value;
-        if (freeValues) {
-            free(o);
-        }
         prev = n;
         n = n->next;
         freeNormalNode(&prev);
@@ -180,7 +176,7 @@ ListObj normalLLDeleteFront(NormalLL *l) {
     }
     ListObj o = l->first->value;
     if (l->length == 1) {
-        normalLLClear(l, false);
+        normalLLClear(l);
         return o;
     }
     Node *first = l->first;
@@ -202,7 +198,7 @@ ListObj normalLLDeleteBack(NormalLL *l) {
     }
     ListObj o = l->last->value;
     if (l->length == 1) {
-        normalLLClear(l, false);
+        normalLLClear(l);
         return o;
     }
     Node *last = l->last;

@@ -16,7 +16,7 @@ ListObj normalLLFront(NormalLL *l);
 ListObj normalLLBack(NormalLL *l);
 ListObj normalLLGet(NormalLL *l);
 
-void normalLLClear(NormalLL *l, bool freeValues);
+void normalLLClear(NormalLL *l);
 void normalLLSet(NormalLL *l, ListObj value);
 void normalLLMoveFront(NormalLL *l);
 void normalLLMoveBack(NormalLL *l);
