@@ -40,7 +40,7 @@ void freeArrayLL(ArrayLL **l) {
 }
 
 bool isNull(ArrayLL *l, int i) {
-    return l->arr[i].prev == 0 && l->arr[i].next == 0;
+    return l->arr[i].value == NULL;
 }
 
 void setNull(ArrayLL *l, int index) {
@@ -119,7 +119,7 @@ void arrayLLMovePrev(ArrayLL *l) {
 void arrayLLMoveNext(ArrayLL *l) {
     if (l->index == -1)
         return;
-    if (l->index == l->length - 1) {
+    if (l->index == l->length) {
         l->index = -1;
         l->current = -1;
         return;
@@ -284,7 +284,7 @@ ArrListObj arrayLLDelete(ArrayLL *l) {
         return arrayLLDeleteBack(l);
     Node *n = l->arr + l->current;
     int prev = n->prev, next = n->next;
-    Node *prevNode = l->arr + prev, *nextNode = l->arr +next;
+    Node *prevNode = l->arr + prev, *nextNode = l->arr + next;
     prevNode->next = next - prev;
     nextNode->prev = prev - next;
     ArrListObj value = n->value;

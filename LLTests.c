@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SIZE 10
+#define SIZE 200000000
 
 int vals[SIZE];
 
@@ -38,22 +38,12 @@ void normalTest() {
     freeNormalLL(&l);
 }
 
-void printTemp(ArrayLL *l) {
-    arrayLLMoveFront(l);
-    while (arrayLLIndex(l) >= 0) {
-        printf("%p ", arrayLLGet(l));
-        arrayLLMoveNext(l);
-    }
-    printf("\n");
-}
-
 void arrayTest() {
     printf("---Array Linked List---\n");
     time_t start = time(NULL);
     ArrayLL *l = arrayLLCreate(SIZE);
     for (int i = 0; i < SIZE; i++) {
         arrayLLAppend(l, vals + i);
-        printTemp(l);
     }
     printf("Appended in %lu seconds.\n", time(NULL) - start);
     start = time(NULL);
@@ -62,14 +52,10 @@ void arrayTest() {
             fprintf(stderr, "DeleteBack does not match.\n");
             exit(EXIT_FAILURE);
         }
-        printTemp(l);
-        void *d = arrayLLDeleteFront(l);
-        printf("%p\n", d);
-        if (*(int *)d != i) {
+        if (*(int *)arrayLLDeleteFront(l) != i) {
             fprintf(stderr, "DeleteFront does not match.\n");
             exit(EXIT_FAILURE);
         }
-        printTemp(l);
     }
     if (SIZE % 2 == 1) {
         arrayLLDeleteBack(l);
