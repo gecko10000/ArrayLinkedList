@@ -91,5 +91,6 @@ int main(int argc, char *argv[]) {
     }
     normalTest();
     arrayTest();
+    free(vals);
     return EXIT_SUCCESS;
 }
