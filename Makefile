@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c17 -Wall -Wextra -Wpedantic -g
+CFLAGS = -std=c17 -Wall -Wextra -Wpedantic -O3
 
 TARGET = LLTests
 MODULES = NormalLL ArrayLL
