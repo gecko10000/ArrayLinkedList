@@ -32,6 +32,7 @@ Deleted in 13 seconds.
 Appended in 15 seconds.
 Deleted in 11 seconds.
 ```
+Deletion is a bit more similar because each value is being compared to ensure it is the correct one.
 
 ## Limitations
 
